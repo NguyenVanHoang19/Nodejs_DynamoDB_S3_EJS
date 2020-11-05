@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Sinh viên</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <div>
+        <form method="POST" action="/themSinhVien" enctype="multipart/form-data">
+            <input type="text" placeholder="Nhập mã sinh viên" name="maSV"/>
+            <br/><br/>
+            <input type="text" placeholder="Nhập tên sinh viên" name="tenSV"/>
+            <br/><br/>
+            <input type="text" placeholder="Nhập ngày sinh" name="ngaySinh"/>
+            <br/><br/>
+            <input type="file" placeholder="Chọn ảnh " name="anh"/>
+            <br/><br/>
+            <input type="submit" value="Thêm sinh viên"/>
+        </form>
+        <br/><br/>
+        <p>Danh Sách Sinh Viên</p>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>Mã sinh viên</th>
+                    <th>Tên sinh viên</th>
+                    <th>Ngày sinh</th>
+                    <th>Ảnh</th>
+                    <th>Cập nhật sinh viên</th>
+                    <th>Xóa</th>
+                </tr>
+                <%for(let i=0 ; i < dataSV.length ; i++ ){ %>
+                    <tr>
+                        <td><%= dataSV[i].maSV %></td>
+                        <td><%= dataSV[i].tenSV %></td>
+                        <td><%= dataSV[i].ngaySinh %></td>
+                        <td>
+                            <img src="<%= dataSV[i].avatar %>" alt="Ảnh sinh viên" width="200px" height="200px">
+                        </td>
+                        <td>
+                            <form action="/deleteSinhVien" method="post">
+                                <input type="hidden" value="<%=dataSV[i].id %>" name="id">
+                                <input type="hidden" value="<%=dataSV[i].maSV %>" name="maSV">
+                                <input type="submit" value="Xóa">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/updateForm" method="post">
+                                <input type="hidden" value="<%=dataSV[i].id %>" name="id">
+                                <input type="hidden" value="<%=dataSV[i].maSV %>" name="maSV">
+                                <input type="hidden" value="<%=dataSV[i].tenSV %>" name="tenSV">
+                                <input type="hidden" value="<%=dataSV[i].ngaySinh %>" name="ngaySinh">
+                                <input type="hidden" value="<%=dataSV[i].avatar %>" name="anh">
+                                <input type="submit" value="Cập nhật">
+                            </form>
+                        </td>
+                    </tr>
+                    <% }%>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

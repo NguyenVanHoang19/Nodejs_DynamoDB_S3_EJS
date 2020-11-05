@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<body>
+    <div>
+        <p>Cập nhật sinh viên</p>
+        <form action="/updateSinhVien" method="post" enctype="multipart/form-data"> 
+            <input type="text" name="tenSV" value="<%= sinhvien.tenSV%>">
+            <br/><br/>
+            <input type="text" name="ngaySinh" value="<%= sinhvien.ngaySinh%>">
+            <br/><br/>
+            <img src="<%= sinhvien.avatar %>" alt="Ảnh sinh viên" width="200px" height="200px">
+            <br/><br/>
+            <input type="file" name="anh">
+            <br/><br/>
+            <input type="hidden" name="maSV" value="<%= sinhvien.maSV %>">
+            <input type="hidden" name="id" value="<%= sinhvien.id %>">  
+            <input type="submit" value="Cập nhật sinh viên">
+        </form>
+    </div>
+</body>
+</html>
